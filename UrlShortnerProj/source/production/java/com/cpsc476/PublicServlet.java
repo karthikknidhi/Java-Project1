@@ -24,6 +24,9 @@ public class PublicServlet extends HttpServlet {
     	if (request.getSession().getAttribute("username")==null){
     	request.getRequestDispatcher("/WEB-INF/jsp/view/guest.jsp").forward(request,response);
     	}
+    	else{
+    		response.sendRedirect("private?action=login");
+    	}
 	}
 	
     

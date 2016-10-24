@@ -22,9 +22,19 @@ public class PrivateServlet extends HttpServlet {
            return;
        }
 	   
-	   String action= (String) request.getAttribute("action");
-	   if (action=="redirect"){
-		 System.out.println("redirecting");  
+	   String action= (String) request.getParameter("action");
+	   if (action.equals("redirect")){
+	     String url=(String) request.getParameter("url");
+	     String longUrl="";
+	     
+	     for(String item: PublicServlet.database.keySet()){
+		    Url shortUrl = (Url) PublicServlet.database.get(item);
+		    if (shortUrl.getUrl().equals(url)){  
+			    longUrl=item;
+			    response.sendRedirect("http://"+ longUrl);
+		    }
+	     }
+	 
 	   }
 	   else{
 	   String uname=(String)request.getSession().getAttribute("username");
@@ -51,7 +61,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 	String lurl=request.getParameter("longurl"); 
   String surl=this.createURL(request, response);
   String x[][]=this.showListURL(request, response);
-   System.out.println(x);
+   //System.out.println(x);
    request.setAttribute("url", x);
    request.setAttribute("shorturl", surl);
    request.setAttribute("longurl", lurl);
@@ -61,13 +71,13 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 private String createURL(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 {
     String longurl1=request.getParameter("longurl");
-    System.out.println(longurl1);
+    //System.out.println(longurl1);
     String shorturlstr = Base64.getUrlEncoder().encodeToString(longurl1.getBytes("utf-8")).substring(1,7);
-    System.out.println(shorturlstr);
+    //System.out.println(shorturlstr);
     String shorturl="http://localhost:8080/short/"+shorturlstr;
     Url u=new Url(shorturl);
     PublicServlet.database.put(longurl1, u);
-     System.out.println(PublicServlet.database);
+     //System.out.println(PublicServlet.database);
      
      return shorturl;
 
@@ -84,7 +94,7 @@ private String[][] showListURL(HttpServletRequest request, HttpServletResponse r
          values[i] = (Url)entry.getValue();
          myStringArray[i][0]=values[i].getUrl();
          myStringArray[i][1]=new Integer(values[i].getClicks()).toString();
-         System.out.println(myStringArray[i][0]+" "+myStringArray[i][1]);
+         //System.out.println(myStringArray[i][0]+" "+myStringArray[i][1]);
          i++;
        }
     return myStringArray;

@@ -19,21 +19,21 @@
    <h3>The original URL for the shortened one you entered is: </h3>
    <h3> <%=url%> </h3>
    <br/>
-   <a href="public">Go Back</a>
+   <a href="servlet1">Go Back</a>
    <%}%>
    
    <%-- if the URL is not found in the DB: --%>
    <% if (notFound == true){
 	  out.println("Sorry, URL is not found. Try another one!");%>
 	  <br/> 
-	  <a href="public">Go Back</a>
+	  <a href="servlet1">Go Back</a>
    <%}%>
    
    <%-- if the URL DB is empty, i.e no URL's stored in DB yet: --%>
    <% if (emptyDB == true){
 	  out.println("Sorry, There are no URL saved. Please login and add some URL's!");%>
 	  <br/>
-	  <a href="public">Go Back</a> 
+	  <a href="servlet1">Go Back</a> 
    <%}%>
    
       

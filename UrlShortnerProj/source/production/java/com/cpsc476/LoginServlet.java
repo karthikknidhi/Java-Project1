@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 	    	
 	        if(request.getParameter("logout") != null){
 	            session.invalidate();
-	            response.sendRedirect("login");
+	            response.sendRedirect("servlet1");
 	            return;
 
 	        }
@@ -120,7 +120,7 @@ public class LoginServlet extends HttpServlet {
 	        HttpSession session = request.getSession();
 
 	        session.setAttribute("username", username);
-	        response.sendRedirect("private");
+	        response.sendRedirect("private?action=login");
 
 	        
 
