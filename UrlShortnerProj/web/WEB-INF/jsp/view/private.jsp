@@ -15,7 +15,7 @@ String lurl=(String)request.getAttribute("longurl");%>
 </head>
 <body>
 <h1>Hello <%= user %>, This is you private page!</h1><br>
-<a href="login" align="right">Logout</a>
+<a href="login?logout" align="right">Logout</a>
 
 <h3>Shorten your url here!!</h3><br><br>
 <h3>Enter a long url:</h3>
@@ -36,8 +36,8 @@ String lurl=(String)request.getAttribute("longurl");%>
 <%if(u!= null){ %>
 <%for(int i=0;i<u.length;i++){ %>
 <%if(u[i][0]!= null){ %>
-<% request.setAttribute("longUrl", lurl); %>
-<tr><td><a href="private?action=redirect" /><%= u[i][0] %></td>
+<% //request.setAttribute("lurl", lurl); %>
+<tr><td><a href="private?action=redirect&url=<%=u[i][0]%>" /><%= u[i][0] %></td>
 <td><%= u[i][1] %></td>
 </tr>
 <%} %>
