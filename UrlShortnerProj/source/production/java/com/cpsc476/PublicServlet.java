@@ -15,7 +15,7 @@ public class PublicServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	//The URL's database:
-    private Map<String, Object> database= new HashMap<>();   
+    protected static Map<String, Object> database= new HashMap<>();   
     
     
     @Override
