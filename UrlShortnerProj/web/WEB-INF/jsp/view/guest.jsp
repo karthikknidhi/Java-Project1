@@ -11,7 +11,7 @@
     <h3>Please <a href="login">login</a>, or use public access only.</h3>
     
     <%--This is the form used by public users to enter short URL, in order to get the full URL--%>
-    <form action="servlet1" method="POST">
+    <form action="public" method="POST">
         <input type="hidden" name="action" value="guest" />
         <label>Enter Short URL: </label>
         <input type="text" name="shortUrl" />
